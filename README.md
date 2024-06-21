@@ -52,14 +52,15 @@
 ##### 限流能力
 
 将限流器设置为20，
-
-![image-20240621132505239](.\public\images\image-20240621132505239.png)
+![image-20240621132505239](https://github.com/wonderland810/2024_training/assets/75829062/d148583f-2461-49d7-8a90-bcc340ecfa0c)
 
 使用JMeter访问50次/s  访问**高级API**http://localhost:9000/highLevel?num=100，
 
-![image-20240621142429055](.\public\images\image-20240621142429055.png)(.\public\images\image-20240621142241943.png)
+![image-20240621142241943](https://github.com/wonderland810/2024_training/assets/75829062/6a7d71dc-8b88-4c1c-aa3c-0edb6dce53c4)
 
-![image-20240621133127571](.\public\images\image-20240621133127571.png)
+
+![image-20240621133127571](https://github.com/wonderland810/2024_training/assets/75829062/30e33eed-b130-4f69-b532-c4f27533b1b8)
+
 
 从结果可以看出，在使用高级API异步处理时，每个请求的响应时间都比较平均，性能较好，前面的请求均成功响应，后续请求部分成功，是由于前面请求已处理完毕，限流器又允许后面的请求进入；从失败的具体响应体“Too many requests” 可以看出是限流器起作用，直接将请求拦截。
 
@@ -69,11 +70,10 @@
 $$
 http://localhost:9000/highLevel?num=25
 $$
-![image-20240620222241664](.\public\images\image-20240620222241664.png)
+![image-20240620222241664](https://github.com/wonderland810/2024_training/assets/75829062/41ac7382-bdc6-4f8f-b2b7-f64de8af765f)
 
 - 延迟小于100ms则视为实现错误，延迟大于200ms则视为超时，算请求失败，记录异常日志
 - 延迟在100ms-200ms之间请求成功，返回num的平方根，以info日志记录
-
 
 
 #### 3.AKKA Actor 实现低高级业务逻辑：
@@ -82,9 +82,9 @@ $$
 
 将Actor 超时时间设置为2s，线程池数量设置为2，限流器设置为100，使用JMeter访问50次/s ，此时限流器将不在生效，而线程池数量有限，使用**低级API**必会存在一些请求会阻塞，**当请求超过2s必会触发超时**， 访问http://localhost:9000/lowLevel?num=100，
 
-![image-20240621142803765](.\public\images\image-20240621142803765.png)
+![image-20240621142803765](https://github.com/wonderland810/2024_training/assets/75829062/21110311-d96e-4cad-b66b-b7b8f0299bae)
 
-![image-20240621140105076](.\public\images\image-20240621140105076.png)
+![image-20240621140105076](https://github.com/wonderland810/2024_training/assets/75829062/80e479f5-7abc-4d9c-be95-f332374302e6)
 
 从结果可以看出，在请求响应时间小于2s均成功响应，后续请求全部失败；从失败的具体响应体“The request timed out. Please try again later.” 可以看出是Actor 超时，及时退出了。
 
@@ -92,13 +92,13 @@ $$
 
 但是相同的条件下，使用**高级API**，异步进行处理时，每个请求由于是异步处理就不会出现阻塞，全部成功。具体运行结果如下
 
-![image-20240621143107811](.\public\images\image-20240621143107811.png)
+![image-20240621143107811](https://github.com/wonderland810/2024_training/assets/75829062/462712e5-4f1c-4d70-81bb-29b2552998e3)
 
-![image-20240621143241732](.\public\images\image-20240621143241732.png)
+![image-20240621143241732](https://github.com/wonderland810/2024_training/assets/75829062/356ba477-f362-44e9-8f72-5f34dbd81a2b)
+
 
 #### 4.基于服务性能要求：
 
-- 堆内存最多 4GB，使用 G1 作为垃圾回收器。![image-20240621140622100](.\public\images\image-20240621140622100.png)
-- Play 框架和 Actor 框架线程池都不超过 CPU 核数，设置为6。
+- 堆内存最多 4GB，使用 G1 作为垃圾回收器。![image-20240621140622100](https://github.com/wonderland810/2024_training/assets/75829062/e75a653f-f03a-4c70-b12d-0e69c22fdd43)
 
-![image-20240621140738300](.\public\images\image-20240621140738300.png)
+- Play 框架和 Actor 框架线程池都不超过 CPU 核数，设置为6。
