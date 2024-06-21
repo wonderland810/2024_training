@@ -5,7 +5,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app/delaysquareapi-1.0/
 
 # 复制解压后的文件到容器中
-COPY delaysquareapi-1.0  /app/delaysquareapi-1.0/
+COPY stage/  /app/delaysquareapi-1.0/
 
 # 更改权限
 RUN chmod +x /app/delaysquareapi-1.0/bin/delaysquareapi

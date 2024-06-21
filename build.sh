@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 运行 sbt 打包命令
-sbt dist
+sbt stage
 
 # 删除之前构建的同名容器（如果存在）
 if [ "$(docker ps -aq -f name=delaysquareapi)" ]; then
@@ -18,4 +18,4 @@ fi
 docker build -t delaysquareapi .
 
 # 创建并启动 Docker 容器
-docker docker run -d --name delaysquareapi -p 9000:9000 delaysquareapi
+docker run -d --name delaysquareapi -p 9000:9000 delaysquareapi
