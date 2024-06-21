@@ -12,13 +12,13 @@
 
 - 提供容器内服务启动的脚本代码
 
-##### 2.用play framework实现http** **api****的接入层
+2.**用play framework实现http** **api****的接入层**
 
 
 - 基于play action实现限流能力，限流值配置在 ./conf/application.conf 中。
 - 日志分级：Error/Warn 日志与 Info 日志区分开。
 
-##### 3.AKKA Actor 实现低高级业务逻辑：
+3.**AKKA Actor 实现低高级业务逻辑：**
 
 - actor接收来自接入层数据后，模拟高延迟处理，然后返回结果(平方根)给接入层，需要同时实现**低级**和**高级**两种方式，通过两个不同API来分别访问。
 
@@ -27,14 +27,14 @@
 
 - Actor 设置超时逻辑（5s），防止 Actor 超时太长，不能及时退出。
 
-##### 4.基于服务性能要求：
+4.**基于服务性能要求：**
 
 - 堆内存最多 4GB，使用 G1 作为垃圾回收器。
 - Play 框架和 Actor 框架线程池都不超过 CPU 核数。
 - CPU 总消耗不能超过物理机的 50%。
 
 
-
+###
 ### 实现效果
 
 #### 1docker容器部署
@@ -45,8 +45,7 @@
 
 【低级】http://localhost:9000/lowLevel?num=25
 
-
-
+####
 #### 2实现http** **api****的接入层
 
 ##### 限流能力
@@ -75,7 +74,7 @@ $$
 - 延迟小于100ms则视为实现错误，延迟大于200ms则视为超时，算请求失败，记录异常日志
 - 延迟在100ms-200ms之间请求成功，返回num的平方根，以info日志记录
 
-
+####
 #### 3.AKKA Actor 实现低高级业务逻辑：
 
 ##### 【低级】http://localhost:9000/lowLevel?num=25 和超时逻辑
@@ -96,7 +95,7 @@ $$
 
 ![image-20240621143241732](https://github.com/wonderland810/2024_training/assets/75829062/356ba477-f362-44e9-8f72-5f34dbd81a2b)
 
-
+####
 #### 4.基于服务性能要求：
 
 - 堆内存最多 4GB，使用 G1 作为垃圾回收器。![image-20240621140622100](https://github.com/wonderland810/2024_training/assets/75829062/e75a653f-f03a-4c70-b12d-0e69c22fdd43)
