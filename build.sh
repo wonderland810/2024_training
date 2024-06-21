@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # 运行 sbt 打包命令
 sbt dist
@@ -14,10 +13,8 @@ if [ "$(docker images -q delaysquareapi)" ]; then
     docker rmi delaysquareapi
 fi
 
-# 登录 Docker
-docker login
 
-# 构建 Docke
+# 构建 镜像
 docker build -t delaysquareapi .
 
 # 创建并启动 Docker 容器
