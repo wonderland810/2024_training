@@ -2,7 +2,6 @@ package actors
 
 import akka.actor.{Actor, ActorRef}
 import play.api.i18n.Lang.logger
-
 import scala.concurrent.blocking
 import scala.concurrent.duration.{DurationInt, FiniteDuration}
 import scala.math.sqrt
@@ -14,7 +13,7 @@ import scala.util.Random
  * @Filename: SquareActor
  * @Author: Wang Le
  * @Data:2024/6/18 20:07
- * @Description: TODO
+ * @Description:
  *
  */
 class SquareActor() extends Actor {
@@ -63,9 +62,7 @@ class SquareActor() extends Actor {
       msg
     }
   }
-
 }
 
 object SquareActor {
-
 }

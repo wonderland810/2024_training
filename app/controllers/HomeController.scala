@@ -6,7 +6,6 @@ import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.pattern.{AskTimeoutException, ask}
 import akka.util.Timeout
 import play.api.mvc._
-
 import javax.inject._
 import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.duration.DurationInt

@@ -3,7 +3,6 @@ package actions
 
 import com.google.common.util.concurrent.RateLimiter
 import play.api.mvc._
-
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -12,7 +11,7 @@ import scala.concurrent.{ExecutionContext, Future}
  * @Filename: ActionBuilder
  * @Author: Wang Le
  * @Data:2024/6/18 14:45
- * @Description: TODO
+ * @Description:
  *
  */
 class RateLimitedAction @Inject()(parser: BodyParsers.Default)(implicit ec: ExecutionContext, config: play.api.Configuration)
