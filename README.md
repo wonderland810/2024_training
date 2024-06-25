@@ -66,10 +66,11 @@
 ##### 日志分级
 
 使用高级API访问
-$$
-http://localhost:9000/highLevel?num=25
-$$
-![image-20240620222241664](https://github.com/wonderland810/2024_training/assets/75829062/41ac7382-bdc6-4f8f-b2b7-f64de8af765f)
+
+http://localhost:9000/highLevel?num=100
+
+![image](https://github.com/wonderland810/2024_training/assets/75829062/f83002c3-5979-4490-a604-c68ac517994b)
+
 
 - 延迟小于100ms则视为实现错误，延迟大于200ms则视为超时，算请求失败，记录异常日志
 - 延迟在100ms-200ms之间请求成功，返回num的平方根，以info日志记录
@@ -98,6 +99,24 @@ $$
 ####
 #### 4.基于服务性能要求：
 
-- 堆内存最多 4GB，使用 G1 作为垃圾回收器。![image-20240621140622100](https://github.com/wonderland810/2024_training/assets/75829062/e75a653f-f03a-4c70-b12d-0e69c22fdd43)
+- 堆内存最多 4GB，使用 G1 作为垃圾回收器。
 
-- Play 框架和 Actor 框架线程池都不超过 CPU 核数，设置为6。
+- Play 框架和 Actor 框架线程池都不超过 CPU 核数
+通过lscpu指令查看详细的 CPU 信息，包括核心数、线程数、架构等，将线程池最大线程数设置为4,线程数量固定且队列有界
+lscpu
+![image](https://github.com/wonderland810/2024_training/assets/75829062/c9862ab8-fd54-4694-a390-54d9653a09b4)
+![image](https://github.com/wonderland810/2024_training/assets/75829062/250e9308-0a66-4765-8a86-a402e97edba2)
+
+- CPU总消耗不能超过物理机的50%
+top 是一个实时显示系统总体性能状态的命令，会显示每个进程的 CPU 使用情况。可以使用 top 命令来查看系统总体 CPU 使用情况。
+top
+![image](https://github.com/wonderland810/2024_training/assets/75829062/d1e2264d-5a85-4f53-89e6-58e222e46c9a)
+
+us：用户空间的 CPU 使用率
+sy：内核空间的 CPU 使用率
+ni：用户进程空间内改变过优先级的进程的 CPU 使用率
+id：空闲的 CPU 比率
+wa：等待 I/O 的 CPU 比率
+hi：硬中断的 CPU 使用率
+si：软中断的 CPU 使用率
+st
