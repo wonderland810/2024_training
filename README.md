@@ -66,10 +66,11 @@
 ##### 日志分级
 
 使用高级API访问
-$$
-http://localhost:9000/highLevel?num=25
-$$
-![image-20240620222241664](https://github.com/wonderland810/2024_training/assets/75829062/41ac7382-bdc6-4f8f-b2b7-f64de8af765f)
+
+http://localhost:9000/highLevel?num=100
+
+![image](https://github.com/wonderland810/2024_training/assets/75829062/f83002c3-5979-4490-a604-c68ac517994b)
+
 
 - 延迟小于100ms则视为实现错误，延迟大于200ms则视为超时，算请求失败，记录异常日志
 - 延迟在100ms-200ms之间请求成功，返回num的平方根，以info日志记录
