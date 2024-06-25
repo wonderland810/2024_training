@@ -1,6 +1,0 @@
-input your name：
-wangle
-please input your age：
-24
-age：24
-姓名：wangle
