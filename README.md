@@ -113,10 +113,8 @@ http://localhost:9000/highLevel?num=100
 
 - CPU总消耗不能超过物理机的50%
   top 是一个实时显示系统总体性能状态的命令，会显示每个进程的 CPU 使用情况。可以使用 top 命令来查看系统总体 CPU 使用情况。
-  top
-
   ```bash
-  
+    top
   ```
 
   ![image](https://github.com/wonderland810/2024_training/assets/75829062/d1e2264d-5a85-4f53-89e6-58e222e46c9a)
