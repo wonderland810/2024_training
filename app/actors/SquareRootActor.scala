@@ -39,7 +39,7 @@ class SquareRootActor() extends Actor {
           }
       }
     case _ =>
-      val msg = "参数错误，已退出"
+      val msg = "Parameter error, exited"
       logger.error(msg)
   }
 
