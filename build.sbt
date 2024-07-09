@@ -8,8 +8,6 @@ resolvers += "Akka Snapshot Repository" at "https://repo.akka.io/snapshots/"
 
 scalaVersion := "2.11.12"
 
-scalaVersion := "2.11.12"
-
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play" % "2.5.18"
 )
