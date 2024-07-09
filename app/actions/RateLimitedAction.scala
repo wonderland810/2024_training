@@ -15,7 +15,6 @@ import scala.concurrent.{ExecutionContext, Future}
 
  *
  */
-@Singleton
 class RateLimitedAction @Inject()()(implicit ec: ExecutionContext, config: play.api.Configuration)
   extends ActionBuilder[Request] {
 
